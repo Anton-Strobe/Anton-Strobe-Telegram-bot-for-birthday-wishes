@@ -80,6 +80,7 @@ $sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_i
 $sendToTelegram2 = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$txt}", "r");
 
 //Код js который преобразует гугл-таблицу в json
+//Этот код вставляем в гугл таблице, раздел: Расширения-> App Script
 
 
 // function doGet() {
