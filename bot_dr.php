@@ -78,3 +78,39 @@ $sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_i
 //$sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$info_date2}", "r");
 
 $sendToTelegram2 = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$txt}", "r");
+
+//Код js который преобразует гугл-таблицу в json
+
+
+// function doGet() {
+//   let result = {};
+//   let users = SpreadsheetApp
+//                 .getActiveSpreadsheet()
+//                 .getSheetByName('Users')
+//                 .getDataRange()
+//                 .getValues()
+//   users.shift()
+//     result.users = createObject(users)
+//     return ContentService.createTextOutput(JSON.stringify(result))
+//            .setMimeType(ContentService.MimeType.JSON)
+         
+// }
+// const sortedActivities = obj.sort((a, b) => b.date - a.date)
+// function createObject(dataArr) {
+//   let obj = []
+  
+//   obj = dataArr.map(el => ({
+//     Dates: el[0], 
+//     Tg: el[1],
+//     FIO: el[2],
+//     Dolznst: el[3],
+//     Nambr: el[4],	
+//     Podrazdelenie: el[5],
+//     Sity: el[6],
+//   }))
+//     return obj
+//   }
+
+
+
+//Нужно обратить внимание что таблица должна называться именно так: users Что код считал именно эту страницу, по имени: users
