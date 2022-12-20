@@ -96,12 +96,16 @@ $sendToTelegram2 = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_
 //            .setMimeType(ContentService.MimeType.JSON)
          
 // }
-// const sortedActivities = obj.sort((a, b) => b.date - a.date)
+// var options = {  
+//   year: 'numeric',
+//   month: 'numeric',
+//   day: 'numeric'  
+// };
 // function createObject(dataArr) {
 //   let obj = []
   
 //   obj = dataArr.map(el => ({
-//     Dates: el[0], 
+//     Dates: (el[0].toLocaleString(options)), 
 //     Tg: el[1],
 //     FIO: el[2],
 //     Dolznst: el[3],
@@ -109,8 +113,10 @@ $sendToTelegram2 = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_
 //     Podrazdelenie: el[5],
 //     Sity: el[6],
 //   }))
-//     return obj
-//   }
+  
+//   return obj
+  
+// }
 
 
 
