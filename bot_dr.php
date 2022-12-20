@@ -1,29 +1,13 @@
 <?php
-$date_full = date("d-m-Y");
 
-//Дата на сегодня
-$date_d = date("d-m");
-
-//Дата на месяц в перед
-$date_m = date("m", strtotime('+1 month'));
-
-//Гугл-таблица преобразованная в json. Пример: $json_google = "https://script.google.com/macros/s/xxxxxxxxxxxxxxxxxxxxxxxxxx/exec";
-include 'json_google.php';
-
-$json = file_get_contents($json_google);
-$array = json_decode($json, true);
-
-//Создаем пустой массив для будущей сортировки по хронологии
-$uniqid = array();
-$uniqArray = array();
-$count = 0;
+require_once('info.php');
 
 foreach ($array as $key => $stroke) {
 
 //Перезаписываем в новый массив
   foreach ($stroke as $val) {
     if (!in_array($val['Dates'], $uniqid)) {
-      $val[Dates] = date('d-m-Y', strtotime($val[Dates]));
+      $val['Dates'] = date('d-m-Y', strtotime($val['Dates']));
       array_push($uniqArray, $val);
       $count++;
     }
@@ -34,18 +18,15 @@ foreach ($array as $key => $stroke) {
   foreach ($uniqArray as $df) {
 
     //ДАТА МЕСЯЦ
-    $fixed_m = date('m', strtotime($df[Dates]));
+    $fixed_m = date('m', strtotime($df['Dates']));
 
     //ДАТА ТОЛЬКО ДЕНЬ
-    $fixed_d = date('d-m', strtotime($df[Dates]));
-
+    $fixed_d = date('d.m', strtotime($df['Dates']));
     if ($date_d == $fixed_d) {
     //if ($date_m == $fixed_m) {
-
-
-      //Токен и чат айди от бота в телеграме. ПРИМЕР:  //$token = "XXXXXXXXXX:XXXXXXXXXXXXXXXXXXXXXXXXXX";  //$chat_id = "-XXXXXXXXXXXXX";
-      include 'token_telegram.php';
-     
+      
+      $token = "xxxxxxxxxxxxxxxxxxxxx";
+      $chat_id = "xxxxxxxxxxxxxxxx";
       $counter = 0;
       foreach ($df as $key => $value) {
         // if ($counter == 0) {
@@ -64,12 +45,6 @@ foreach ($array as $key => $stroke) {
 }
 
 
-$info = "Именинники сегодня:  ";
-$info_date = "$date_full%0A$info";
-
-$info2 = "Именинники в следующем месяце:  ";
-$date_time = date("d.m.Y", strtotime('+1 month'));
-$info_date2 = "$date_time%0A$info2";
 
 //ЗАГОЛОВОК на сегодня
 $sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$info_date}", "r");
@@ -78,6 +53,7 @@ $sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_i
 //$sendToTelegram = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$info_date2}", "r");
 
 $sendToTelegram2 = fopen("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$txt}", "r");
+
 
 //Код js который преобразует гугл-таблицу в json
 //Этот код вставляем в гугл таблице, раздел: Расширения-> App Script
